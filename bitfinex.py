@@ -37,6 +37,30 @@ class Exchange(ndb.Model):
     timestamp = ndb.DateTimeProperty(auto_now_add=True)
 
 
+class FetchLocalPrices(webapp2.RequestHandler):
+    pass
+
+    def get(self):
+        exchange_query = Exchange.query().order(-Exchange.timestamp)
+        prices = exchange_query.fetch(10)
+        priceList = []
+        for item in prices:
+            raw_json = {
+                "mid": str(item.mid),
+                "bid": str(item.bid),
+                "ask": str(item.ask),
+                "last_price": str(item.last_price),
+                "low": str(item.low),
+                "high": str(item.high),
+                "volume": str(item.volume),
+                "timestamp": str(item.timestamp)
+            }
+            priceList.append(raw_json)
+            print priceList
+
+        self.response.out.write(json.dumps(priceList))
+
+
 class HealthCheck(webapp2.RequestHandler):
     def get(self):
         status = {
