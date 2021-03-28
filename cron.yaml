@@ -1,0 +1,4 @@
+cron:
+- description: "Fetch Exchange"
+  url: /fetch-exchange
+  schedule: every 1 mins

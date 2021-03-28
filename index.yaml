@@ -1,0 +1,10 @@
+indexes:
+- kind: Exchange
+  properties:
+  - name: mid
+  - name: bid
+  - name: last_price
+  - name: low
+  - name: high
+  - name: volume
+  - name: timestamp
