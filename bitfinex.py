@@ -53,7 +53,7 @@ class FetchLocalPrices(webapp2.RequestHandler):
                 "low": str(item.low),
                 "high": str(item.high),
                 "volume": str(item.volume),
-                "timestamp": str(item.timestamp)
+                "timestamp": str(item.timestamp.strftime("%Y-%m-%d %H:%M:%S"))
             }
             priceList.append(raw_json)
             print priceList
