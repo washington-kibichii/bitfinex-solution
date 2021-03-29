@@ -42,10 +42,11 @@ class FetchLocalPrices(webapp2.RequestHandler):
 
     def get(self):
         exchange_query = Exchange.query().order(-Exchange.timestamp)
-        prices = exchange_query.fetch(10)
+        prices = exchange_query.fetch(100)
         priceList = []
         for item in prices:
             raw_json = {
+                "key": str(item.key).strip().replace("Key('Exchange', ", "").replace(")", ""),
                 "mid": str(item.mid),
                 "bid": str(item.bid),
                 "ask": str(item.ask),
