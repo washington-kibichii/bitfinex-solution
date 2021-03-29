@@ -58,7 +58,7 @@ class FetchLocalPrices(webapp2.RequestHandler):
             }
             priceList.append(raw_json)
             print priceList
-
+        self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(priceList))
 
 
@@ -67,6 +67,7 @@ class HealthCheck(webapp2.RequestHandler):
         status = {
             "runtime": "true"
         }
+        self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(status))
 
 
@@ -106,11 +107,13 @@ class CallExchange(webapp2.RequestHandler):
             status = {
                 "status": "successful"
             }
+            self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(status))
         else:
             status = {
                 "status": "failed"
             }
+            self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(status))
 
 
